@@ -1,6 +1,6 @@
 import fire from "./fire";
-import firebase from "firebase";
-import Hero from "./components/Hero/index";
+// import firebase from "firebase";
+// import Hero from "./components/Hero/index";
 import React, { useState, useEffect } from "react";
 import Authentication from "./components/Authentication/index";
 
@@ -11,29 +11,29 @@ const App = () => {
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
 	const [hasAccount, setHasAccount] = useState(false);
-	const [imageFile, setImageFile] = useState(null);
-	const [imageUrl, setImageUrl] = useState("");
-	const [downloadURL, setDownloadUrl] = useState("");
+	// const [imageFile, setImageFile] = useState(null);
+	// const [imageUrl, setImageUrl] = useState("");
+	// const [downloadURL, setDownloadUrl] = useState("");
 
-	const handleUploadImage = () => {
-		const folderName = "images";
-		const file = imageFile[0];
-		const storageRef = firebase.storage().ref(`${folderName}/${file.name}`);
-		const uploadTask = storageRef.put(file);
-		uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, () => {
-			const downloadURL = uploadTask.snapshot.downloadURL;
-			setDownloadUrl(downloadURL);
-		});
-	};
+	// const handleUploadImage = () => {
+	// 	const folderName = "images";
+	// 	const file = imageFile[0];
+	// 	const storageRef = firebase.storage().ref(`${folderName}/${file.name}`);
+	// 	const uploadTask = storageRef.put(file);
+	// 	uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, () => {
+	// 		const downloadURL = uploadTask.snapshot.downloadURL;
+	// 		setDownloadUrl(downloadURL);
+	// 	});
+	// };
 
-	const handleViewImage = () => {
-		const storageRef = firebase.storage().ref();
-		const spaceRef = storageRef.child(`images/${imageFile[0].name}`);
-		spaceRef.getDownloadURL().then((url) => {
-			console.log(url);
-			setImageUrl(url);
-		});
-	};
+	// const handleViewImage = () => {
+	// 	const storageRef = firebase.storage().ref();
+	// 	const spaceRef = storageRef.child(`images/${imageFile[0].name}`);
+	// 	spaceRef.getDownloadURL().then((url) => {
+	// 		console.log(url);
+	// 		setImageUrl(url);
+	// 	});
+	// };
 
 	const clearInputs = () => {
 		setEmail("");
@@ -121,14 +121,14 @@ const App = () => {
 				handleSignIn={handleSignIn}
 				handleSignUp={handleSignUp}
 			/>
-			<Hero
+			{/* <Hero
 				imageFile={imageFile}
 				setImageFile={setImageFile}
 				imageUrl={imageUrl}
 				downloadURL={downloadURL}
 				handleUploadImage={handleUploadImage}
 				handleViewImage={handleViewImage}
-			/>
+			/> */}
 		</div>
 	);
 };
