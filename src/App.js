@@ -1,4 +1,4 @@
-import fire from "./fire";
+import { fire } from "./firebase/config";
 import Hero from "./components/Hero/index";
 import React, { useState, useEffect } from "react";
 import Authentication from "./components/Authentication/index";

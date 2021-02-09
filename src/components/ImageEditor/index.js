@@ -1,7 +1,9 @@
-import "./style.css";
-import Slider from "../Slider/index";
+import Wrapper from "./Wrapper";
+import Slider from "../Slider";
 import React, { useState } from "react";
-import SidebarItem from "../SidebarItem/index";
+import SidebarItem from "../SidebarItem";
+import Modal from "../Modals";
+import ImageGrid from "../ImageGrid";
 
 const DEFAULT_OPTIONS = [
 	{
@@ -80,6 +82,7 @@ const ImageEditor = () => {
 	const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
 	const [options, setOptions] = useState(DEFAULT_OPTIONS);
 	const selectedOption = options[selectedOptionIndex];
+	const [selectedImg, setSelectedImg] = useState(null);
 
 	const handleSliderChange = ({ target }) => {
 		setOptions((prevOptions) => {
@@ -98,9 +101,12 @@ const ImageEditor = () => {
 	};
 
 	return (
-		<div className="container">
+		<Wrapper className="container">
 			<div className="main-image" style={getImageStyle()}>
-				<img id="image" alt="file" />
+				<ImageGrid setSelectedImg={setSelectedImg} />
+				{selectedImg && (
+					<Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+				)}
 			</div>
 			<div className="sidebar">
 				{options.map((option, index) => {
@@ -120,7 +126,7 @@ const ImageEditor = () => {
 				value={selectedOption.value}
 				handleChange={handleSliderChange}
 			/>
-		</div>
+		</Wrapper>
 	);
 };
 
