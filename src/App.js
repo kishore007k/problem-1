@@ -1,6 +1,5 @@
 import fire from "./fire";
-// import firebase from "firebase";
-// import Hero from "./components/Hero/index";
+import Hero from "./components/Hero/index";
 import React, { useState, useEffect } from "react";
 import Authentication from "./components/Authentication/index";
 
@@ -9,31 +8,9 @@ const App = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [emailError, setEmailError] = useState("");
-	const [passwordError, setPasswordError] = useState("");
 	const [hasAccount, setHasAccount] = useState(false);
-	// const [imageFile, setImageFile] = useState(null);
-	// const [imageUrl, setImageUrl] = useState("");
-	// const [downloadURL, setDownloadUrl] = useState("");
-
-	// const handleUploadImage = () => {
-	// 	const folderName = "images";
-	// 	const file = imageFile[0];
-	// 	const storageRef = firebase.storage().ref(`${folderName}/${file.name}`);
-	// 	const uploadTask = storageRef.put(file);
-	// 	uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, () => {
-	// 		const downloadURL = uploadTask.snapshot.downloadURL;
-	// 		setDownloadUrl(downloadURL);
-	// 	});
-	// };
-
-	// const handleViewImage = () => {
-	// 	const storageRef = firebase.storage().ref();
-	// 	const spaceRef = storageRef.child(`images/${imageFile[0].name}`);
-	// 	spaceRef.getDownloadURL().then((url) => {
-	// 		console.log(url);
-	// 		setImageUrl(url);
-	// 	});
-	// };
+	const [passwordError, setPasswordError] = useState("");
+	const [userLoggedIn, setUserLoggedIn] = useState(false);
 
 	const clearInputs = () => {
 		setEmail("");
@@ -64,6 +41,7 @@ const App = () => {
 						break;
 				}
 			});
+		setUserLoggedIn(true);
 	};
 
 	const handleSignUp = () => {
@@ -88,6 +66,7 @@ const App = () => {
 
 	const handleSignOut = () => {
 		fire.auth().signOut();
+		setUserLoggedIn(true);
 	};
 
 	const authListener = () => {
@@ -107,28 +86,24 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<Authentication
-				user={user}
-				email={email}
-				password={password}
-				emailError={emailError}
-				passwordError={passwordError}
-				hasAccount={hasAccount}
-				setEmail={setEmail}
-				setPassword={setPassword}
-				setHasAccount={setHasAccount}
-				handleSignOut={handleSignOut}
-				handleSignIn={handleSignIn}
-				handleSignUp={handleSignUp}
-			/>
-			{/* <Hero
-				imageFile={imageFile}
-				setImageFile={setImageFile}
-				imageUrl={imageUrl}
-				downloadURL={downloadURL}
-				handleUploadImage={handleUploadImage}
-				handleViewImage={handleViewImage}
-			/> */}
+			{!userLoggedIn ? (
+				<Authentication
+					user={user}
+					email={email}
+					password={password}
+					emailError={emailError}
+					passwordError={passwordError}
+					hasAccount={hasAccount}
+					setEmail={setEmail}
+					setPassword={setPassword}
+					setHasAccount={setHasAccount}
+					handleSignOut={handleSignOut}
+					handleSignIn={handleSignIn}
+					handleSignUp={handleSignUp}
+				/>
+			) : (
+				<Hero />
+			)}
 		</div>
 	);
 };
