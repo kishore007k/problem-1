@@ -4,7 +4,7 @@ const Hero = ({
 	imageFile,
 	setImageFile,
 	imageUrl,
-	downloadUrl,
+	// downloadUrl,
 	handleUploadImage,
 	handleViewImage,
 }) => {
@@ -16,13 +16,15 @@ const Hero = ({
 				value={imageFile}
 				onSubmit={(e) => setImageFile(e.target.value)}
 			/>
-			<p>{downloadUrl}</p>
+			{/* <p>{downloadUrl}</p> */}
 			<button onClick={handleUploadImage}>Submit</button>
 			<div>
 				<p>Uploaded Image</p>
-				<div>
-					<img src={imageUrl} alt={imageFile[0].name} />
-				</div>
+				{imageUrl && (
+					<div>
+						<img alt={imageFile[0].name} id="image" />
+					</div>
+				)}
 				<button onClick={handleViewImage}>Show Images</button>
 			</div>
 		</form>
