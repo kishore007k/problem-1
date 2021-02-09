@@ -102,7 +102,9 @@ const App = () => {
 					handleSignUp={handleSignUp}
 				/>
 			) : (
-				<Hero />
+				<>
+					<Hero />
+				</>
 			)}
 		</div>
 	);

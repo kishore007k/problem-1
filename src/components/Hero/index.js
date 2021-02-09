@@ -1,14 +1,13 @@
 import firebase from "firebase";
 import React, { useState } from "react";
+import ImageEditor from "../ImageEditor";
 
 const Hero = () => {
 	const [imageFile, setImageFile] = useState([]);
-	const [downloadImageUrl, setDownloadImageUrl] = useState("");
 
 	const handleChange = (e) => {
 		const targetFile = e.target.files[0];
 		setImageFile(targetFile);
-		console.log(targetFile);
 	};
 
 	const handleImageUpload = () => {
@@ -18,7 +17,6 @@ const Hero = () => {
 		const uploadTask = storageRef.put(file);
 		uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, () => {
 			const downloadUrl = uploadTask.snapshot.metadata;
-			setDownloadImageUrl(downloadUrl);
 		});
 	};
 
@@ -35,7 +33,7 @@ const Hero = () => {
 			<input type="file" onChange={handleChange} />
 			<button onClick={handleImageUpload}>Upload</button>
 			<div>
-				<img id="image" alt="file" />
+				<ImageEditor />
 				<button onClick={handleViewImage}>View Images</button>
 			</div>
 		</div>
