@@ -2,18 +2,30 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
 	height: 100vh;
 	background-color: #ddf8ff;
 
+	.mainContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.mainTitle {
+		display: block;
+		text-align: center;
+	}
+
 	.container {
 		display: block;
 		width: 500px;
 		height: auto;
 		background: linear-gradient(45deg, #7e4ca0, #8d4eb8);
-		padding: 10px;
+		padding: 20px;
 		color: aliceblue;
 		border-radius: 10px;
 		box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
@@ -65,6 +77,7 @@ const Wrapper = styled.section`
 		padding: 5px 10px;
 		background: #5d2980;
 		color: aliceblue;
+		margin-bottom: 20px;
 		box-shadow: 0px 5px 10px rgba(93, 41, 128, 0.5);
 		cursor: pointer;
 		transition: 0.5s ease-in-out all;
