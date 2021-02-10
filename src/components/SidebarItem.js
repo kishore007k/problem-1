@@ -3,7 +3,7 @@ import React from "react";
 const SidebarItem = ({ name, active, handleClick }) => {
 	return (
 		<button
-			className={`sidebar-item ${active ? "active" : ""}`}
+			className={`sidebarItem ${active ? "active" : ""}`}
 			onClick={handleClick}
 		>
 			{name}

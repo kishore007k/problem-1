@@ -1,4 +1,3 @@
-import Wrapper from "./Wrapper";
 import Slider from "../Slider";
 import React, { useState } from "react";
 import SidebarItem from "../SidebarItem";
@@ -101,24 +100,26 @@ const ImageEditor = () => {
 	};
 
 	return (
-		<Wrapper className="container">
-			<div className="main-image" style={getImageStyle()}>
-				<ImageGrid setSelectedImg={setSelectedImg} />
-				{selectedImg && (
-					<Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
-				)}
-			</div>
-			<div className="sidebar">
-				{options.map((option, index) => {
-					return (
-						<SidebarItem
-							key={index}
-							name={option.name}
-							active={index === selectedOptionIndex}
-							handleClick={() => setSelectedOptionIndex(index)}
-						/>
-					);
-				})}
+		<div>
+			<div className="container">
+				<div className="main-image" style={getImageStyle()}>
+					<ImageGrid setSelectedImg={setSelectedImg} />
+					{selectedImg && (
+						<Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+					)}
+				</div>
+				<div className="sidebar">
+					{options.map((option, index) => {
+						return (
+							<SidebarItem
+								key={index}
+								name={option.name}
+								active={index === selectedOptionIndex}
+								handleClick={() => setSelectedOptionIndex(index)}
+							/>
+						);
+					})}
+				</div>
 			</div>
 			<Slider
 				min={selectedOption.range.min}
@@ -126,7 +127,7 @@ const ImageEditor = () => {
 				value={selectedOption.value}
 				handleChange={handleSliderChange}
 			/>
-		</Wrapper>
+		</div>
 	);
 };
 
